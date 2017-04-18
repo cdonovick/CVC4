@@ -137,10 +137,10 @@ public:
     }
     ~ScopedPush() {
       d_context->pop();
-      AlwaysAssert(d_context->getTopScope() == d_scope,
-                   "Context::ScopedPush observed an uneven Context (at pop, "
-                   "top scope doesn't match what it was at the time the "
-                   "ScopedPush was applied)");
+      AlwaysAssert(d_context->getTopScope() == d_scope)
+                  << "Context::ScopedPush observed an uneven Context (at pop, "
+                  << "top scope doesn't match what it was at the time the "
+                  << "ScopedPush was applied)" << std::endl;
     }
   };/* Context::ScopedPush */
 
@@ -567,7 +567,7 @@ public:
    * calling deleteSelf().
    */
   static void operator delete(void* pMem) {
-    AlwaysAssert(false, "It is not allowed to delete a ContextObj this way!");
+    AlwaysAssert(false) << "It is not allowed to delete a ContextObj this way!" << std::endl;
   }
 
   /**

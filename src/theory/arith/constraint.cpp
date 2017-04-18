@@ -63,7 +63,7 @@ ConstraintType Constraint::constraintTypeOfComparison(const Comparison& cmp){
   case DISTINCT:
     return Disequality;
   default:
-    Unhandled(k);
+    Unhandled() << k << std::endl;
   }
 }
 

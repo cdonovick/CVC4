@@ -127,7 +127,7 @@ RewriteResponse ArithRewriter::preRewriteTerm(TNode t){
     case kind::POW:
       return RewriteResponse(REWRITE_DONE, t);
     default:
-      Unhandled(k);
+      Unhandled() << k << std::endl;
     }
   }
 }
@@ -176,7 +176,7 @@ RewriteResponse ArithRewriter::postRewriteTerm(TNode t){
       if(t[0].getType().isInteger()) {
         return RewriteResponse(REWRITE_DONE, t[0]);
       }
-      //Unimplemented("TO_INTEGER, nonconstant");
+      //Unimplemented() << "TO_INTEGER, nonconstant" << std::endl;
       //return rewriteToInteger(t);
       return RewriteResponse(REWRITE_DONE, t);
     case kind::IS_INTEGER:
@@ -186,7 +186,7 @@ RewriteResponse ArithRewriter::postRewriteTerm(TNode t){
       if(t[0].getType().isInteger()) {
         return RewriteResponse(REWRITE_DONE, NodeManager::currentNM()->mkConst(true));
       }
-      //Unimplemented("IS_INTEGER, nonconstant");
+      //Unimplemented() << "IS_INTEGER, nonconstant" << std::endl;
       //return rewriteIsInteger(t);
       return RewriteResponse(REWRITE_DONE, t);
     case kind::POW:

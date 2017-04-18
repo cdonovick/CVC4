@@ -23,6 +23,7 @@
 #include <sstream>
 
 #include "base/exception.h"
+#include "base/portability.h"
 
 namespace CVC4 {
 namespace kind {
@@ -158,7 +159,7 @@ ${kind_to_theory_id}
   case kind::LAST_KIND:
     break;
   }
-  throw IllegalArgumentException("", "k", __PRETTY_FUNCTION__, "bad kind");
+  throw IllegalArgumentException("", "k", __CVC4__FUNC_STRING, "bad kind");
 }
 
 inline TheoryId typeConstantToTheoryId(::CVC4::TypeConstant typeConstant) {
@@ -168,7 +169,7 @@ ${type_constant_to_theory_id}
   case LAST_TYPE:
     break;
   }
-  throw IllegalArgumentException("", "k", __PRETTY_FUNCTION__, "bad type constant");
+  throw IllegalArgumentException("", "k", __CVC4__FUNC_STRING, "bad type constant");
 }
 
 }/* CVC4::theory namespace */

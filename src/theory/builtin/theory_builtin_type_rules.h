@@ -304,17 +304,17 @@ public:
 
   inline static Cardinality computeCardinality(TypeNode type) {
     Assert(type.getKind() == kind::SUBTYPE_TYPE);
-    Unimplemented("Computing the cardinality for predicate subtype not yet supported.");
+    Unimplemented() << "Computing the cardinality for predicate subtype not yet supported." << std::endl;
   }
 
   inline static bool isWellFounded(TypeNode type) {
     Assert(type.getKind() == kind::SUBTYPE_TYPE);
-    Unimplemented("Computing the well-foundedness for predicate subtype not yet supported.");
+    Unimplemented() << "Computing the well-foundedness for predicate subtype not yet supported." << std::endl;
   }
 
   inline static Node mkGroundTerm(TypeNode type) {
     Assert(type.getKind() == kind::SUBTYPE_TYPE);
-    Unimplemented("Constructing a ground term for predicate subtype not yet supported.");
+    Unimplemented() << "Constructing a ground term for predicate subtype not yet supported." << std::endl;
   }
 
 };/* class SubtypeProperties */

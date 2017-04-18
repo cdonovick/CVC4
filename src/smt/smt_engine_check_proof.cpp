@@ -113,7 +113,7 @@ void SmtEngine::checkProof() {
 
 #else /* IS_PROOFS_BUILD */
 
-  Unreachable("This version of CVC4 was built without proof support; cannot check proofs.");
+  Unreachable() << "This version of CVC4 was built without proof support; cannot check proofs." << std::endl;
 
 #endif /* IS_PROOFS_BUILD */
 

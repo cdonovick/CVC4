@@ -109,7 +109,7 @@ Node TheoryQuantifiers::getValue(TNode n) {
     }
     break;
   default:
-    Unhandled(n.getKind());
+    Unhandled() << n.getKind() << std::endl;
   }
 }
 
@@ -164,13 +164,13 @@ void TheoryQuantifiers::check(Effort e) {
           break;
         case kind::INST_CLOSURE:
         default:
-          Unhandled(assertion[0].getKind());
+          Unhandled() << assertion[0].getKind() << std::endl;
           break;
         }
       }
       break;
     default:
-      Unhandled(assertion.getKind());
+      Unhandled() << assertion.getKind() << std::endl;
       break;
     }
   }

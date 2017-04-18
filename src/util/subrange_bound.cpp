@@ -33,15 +33,13 @@ std::ostream& operator<<(std::ostream& out, const SubrangeBounds& bounds) {
 
 /** Get the finite SubrangeBound, failing an assertion if infinite. */
 const Integer& SubrangeBound::getBound() const {
-  PrettyCheckArgument(!d_nobound, this, "SubrangeBound is infinite");
+  PrettyCheckArgument(!d_nobound, this) <<  "SubrangeBound is infinite" << std::endl;
   return d_bound;
 }
 
 SubrangeBounds::SubrangeBounds(const SubrangeBound& l, const SubrangeBound& u)
     : lower(l), upper(u) {
-  PrettyCheckArgument(
-      !l.hasBound() || !u.hasBound() || l.getBound() <= u.getBound(), l,
-      "Bad subrange bounds specified");
+  PrettyCheckArgument( !l.hasBound() || !u.hasBound() || l.getBound() <= u.getBound(), l) <<  "Bad subrange bounds specified" << std::endl;
 }
 
 bool SubrangeBounds::joinIsBounded(const SubrangeBounds& a,
