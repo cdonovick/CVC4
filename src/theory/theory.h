@@ -507,8 +507,9 @@ public:
    * (which was previously propagated by this theory).
    */
   virtual Node explain(TNode n) {
-    Unimplemented("Theory %s propagated a node but doesn't implement the "
-                  "Theory::explain() interface!", identify().c_str());
+    Unimplemented() << "Theory " << identify()
+                    << " propagated a node but doesn't implement the "
+                    << "Theory::explain() interface!" << std::endl;
   }
 
   /**
@@ -619,8 +620,7 @@ public:
     *  via the syntax (! n :attr)
     */
   virtual void setUserAttribute(const std::string& attr, Node n, std::vector<Node> node_values, std::string str_value) {
-    Unimplemented("Theory %s doesn't support Theory::setUserAttribute interface",
-                  identify().c_str());
+    Unimplemented() << "Theory " << identify() << " doesn't support Theory::setUserAttribute interface" << std::endl;
   }
 
   /** A set of theories */
@@ -862,7 +862,7 @@ std::ostream& operator<<(std::ostream& os, theory::Theory::Effort level);
 
 
 inline theory::Assertion Theory::get() {
-  Assert( !done(), "Theory::get() called with assertion queue empty!" );
+  Assert(!done()) << "Theory::get() called with assertion queue empty!"  << std::endl;
 
   // Get the assertion
   Assertion fact = d_facts[d_factsHead];
