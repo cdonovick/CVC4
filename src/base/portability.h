@@ -18,50 +18,46 @@
 #define __CVC4__PORTABILITY_H
 
 /* Portable macros */
-#ifndef __CVC4__expect
-
-  #if defined __GUNC__
-    /* !cond !expect ensure currect types are passed to __builtin_expect */
-    #define __CVC4__expect(cond, expect)  __builtin_expect((!(cond)),(!(expect)))
-  #else
-    #define __CVC4__expect(cond, expect) (cond)
-  #endif
-
-#else /* __CVC4__expect */
+#ifdef __CVC4__expect
   #error "__CVC4__expect was defined outside of " __FILE__ ", something is going to break"
 #endif /* __CVC4__expect */
 
-#ifndef __CVC4__FUNC_STRING
+#if defined __GUNC__
+  /* !cond !expect ensure currect types are passed to __builtin_expect */
+  #define __CVC4__expect(cond, expect)  __builtin_expect((!(cond)),(!(expect)))
+#else
+  #define __CVC4__expect(cond, expect) (cond)
+#endif
 
-  #if defined __GNUC__
-    #define __CVC4__FUNC_STRING __PRETTY_FUNCTION__
-  #elif  __cplusplus >= 201103l
-    #define __CVC4__FUNC_STRING __func__
-  #elif defined __FUNCTION__
-    #define __CVC4__FUNC_STRING __FUNCTION__
-  #else
-    // No way to determine the name of the function
-    #define __CVC4__FUNC_STRING ""
-  #endif
 
-#else /* __CVC4__FUNC_STRING */
+#ifdef __CVC4__FUNC_STRING
   #error "__CVC4__FUNC_STRING was defined outside of " __FILE__ ", something is going to break"
 #endif /* __CVC4__FUNC_STRING */
 
-#ifndef __CVC4__noreturn
+#if defined __GNUC__
+  #define __CVC4__FUNC_STRING __PRETTY_FUNCTION__
+#elif  __cplusplus >= 201103L
+  #define __CVC4__FUNC_STRING __func__
+#elif defined __FUNCTION__
+  #define __CVC4__FUNC_STRING __FUNCTION__
+#else
+  // No way to determine the name of the function
+  #define __CVC4__FUNC_STRING ""
+#endif
 
-  #if __cplusplus >= 201103l
-    #define __CVC4__noreturn [[noreturn]]
-  #elif defined __GNUC__
-    #define __CVC4__noreturn __attribute__((noreturn))
-  #else
-    #define __CVC4__noreturn
-  #endif
 
-#else /* __CVC4__NO_RETURN */
+#ifdef __CVC4__noreturn
   #error "__CVC4__NO_RETURN was defined outside of " __FILE__ ", something is going to break"
 #endif /* __CVC4__NO_RETURN */
 
->>>>>>> a42b0b2567cf7da5d065eecf4270da97d51e5b1f
+#if __cplusplus >= 201103L
+  #define __CVC4__noreturn [[noreturn]]
+#elif defined __GNUC__
+  #define __CVC4__noreturn __attribute__((noreturn))
+#else
+  #define __CVC4__noreturn
+#endif
+
+
 #endif /* __CVC4__PORTABILITY_H */
 
